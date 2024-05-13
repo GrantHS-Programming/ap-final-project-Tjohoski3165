@@ -3,11 +3,12 @@ package inputs;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.sql.SQLOutput;
 
 public class MouseInputs implements MouseListener, MouseMotionListener {
     @Override
     public void mouseClicked(MouseEvent e) {
-
+        System.out.println("mouse clicked");
     }
 
     @Override
@@ -37,6 +38,7 @@ public class MouseInputs implements MouseListener, MouseMotionListener {
 
     @Override
     public void mouseMoved(MouseEvent e) {
+        System.out.println("MOUSE MOVED");
 
     }
 }
