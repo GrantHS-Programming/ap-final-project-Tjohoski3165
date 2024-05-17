@@ -11,6 +11,12 @@ import java.awt.event.KeyListener;
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
     private int xDelta = 0, yDelta = 0;
+    private int frames = 0;
+    private long lastCheck =0;
+
+
+
+
     public GamePanel(){
 
         mouseInputs = new MouseInputs();
@@ -19,17 +25,36 @@ public class GamePanel extends JPanel {
         addMouseMotionListener(mouseInputs);
 
     }
+
+
+
     public void changeXDelta(int val){
         this.xDelta += val;
-        repaint();
     }
     public void changeYDelta(int val){
         this.yDelta += val;
-        repaint();
     }
+
+
+
+
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        g.fillRect(100 + xDelta,100 +yDelta,100,175);
 
+
+        g.fillRect(100 + xDelta,100 +yDelta,100,175);
+        repaint();
+
+        frames++;
+        if(System.currentTimeMillis() - lastCheck >= 1000){
+            lastCheck = System.currentTimeMillis();
+            System.out.println("FPS: " + frames);
+            frames=0;
+        }
     }
+    public void updateChar(){
+        xDelta++;
+        yDelta++;
+    }
+
 }
