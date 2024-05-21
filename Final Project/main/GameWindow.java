@@ -6,7 +6,7 @@ public class GameWindow {
 
         jFrame = new JFrame();
 
-        jFrame.setSize(1200,1920);
+        jFrame.setSize(1100,1200);
         jFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         jFrame.add(screen);
         jFrame.setLocationRelativeTo(null);

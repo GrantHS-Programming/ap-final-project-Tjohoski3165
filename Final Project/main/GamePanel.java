@@ -7,18 +7,22 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.util.Random;
 
 public class GamePanel extends JPanel {
     private MouseInputs mouseInputs;
-    private int xDelta = 0, yDelta = 0;
+    private float xDelta = 300, yDelta = 100;
+    private float xDir = 1, yDir = 1;
     private int frames = 0;
     private long lastCheck =0;
+    private Color color = new Color(0,0,0);
+    private Random random;
 
 
 
 
     public GamePanel(){
-
+        random = new Random();
         mouseInputs = new MouseInputs();
         addKeyListener(new KeyBoardInputs(this));
         addMouseListener(mouseInputs);
@@ -40,10 +44,12 @@ public class GamePanel extends JPanel {
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
+        updateChar();
 
 
-        g.fillRect(100 + xDelta,100 +yDelta,100,175);
-        repaint();
+        g.setColor(color);
+        g.fillRect((int) xDelta,(int) yDelta, 100, 175);
+
 
         frames++;
         if(System.currentTimeMillis() - lastCheck >= 1000){
@@ -53,8 +59,24 @@ public class GamePanel extends JPanel {
         }
     }
     public void updateChar(){
-        xDelta++;
-        yDelta++;
+        xDelta+= xDir;
+        if(xDelta > 1000|| xDelta < 0){
+            xDir*=-1;
+            color = getRanColor();
+        }
+        yDelta+= yDir;
+        if(yDelta > 1000 || yDelta < 0){
+            yDir *= -1;
+            color = getRanColor();
+        }
+    }
+
+    private Color getRanColor() {
+        int r = random.nextInt(255);
+        int g = random.nextInt(255);
+        int b = random.nextInt(255);
+
+        return new Color(r,g,b);
     }
 
 }
