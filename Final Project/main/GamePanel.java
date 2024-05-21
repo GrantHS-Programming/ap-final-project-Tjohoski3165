@@ -5,25 +5,22 @@ import inputs.MouseInputs;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.util.Random;
 
 public class GamePanel extends JPanel {
-    private MouseInputs mouseInputs;
     private float xDelta = 300, yDelta = 100;
     private float xDir = 1, yDir = 1;
     private int frames = 0;
     private long lastCheck =0;
     private Color color = new Color(0,0,0);
-    private Random random;
+    private final Random random;
 
 
 
 
     public GamePanel(){
         random = new Random();
-        mouseInputs = new MouseInputs();
+        MouseInputs mouseInputs = new MouseInputs();
         addKeyListener(new KeyBoardInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
