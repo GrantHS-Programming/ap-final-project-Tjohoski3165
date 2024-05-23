@@ -20,20 +20,31 @@ public class KeyBoardInputs implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        switch (e.getKeyCode()){
-            case KeyEvent.VK_W:
-                gamePanel.changeYDelta(-5);
-                break;
-            case KeyEvent.VK_A:
-                gamePanel.changeXDelta(-5);
-                break;
-            case KeyEvent.VK_S:
-                gamePanel.changeYDelta(+5);
-                break;
-            case KeyEvent.VK_D:
-                gamePanel.changeXDelta(+5);
-                break;
-        }
+//        switch (e.getKeyCode()){
+//            case KeyEvent.VK_SPACE:
+//
+//                gamePanel.changeMomentum(-25);
+//
+//
+//
+//
+//
+//                break;
+//            case KeyEvent.VK_A:
+//                gamePanel.changeXMomentum(-5);
+//
+//
+//
+//
+//                break;
+//            case KeyEvent.VK_D:
+//                gamePanel.changeXMomentum(+5);
+//
+//
+//
+//
+//                break;
+//        }
     }
 
     @Override

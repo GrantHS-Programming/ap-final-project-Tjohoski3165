@@ -6,14 +6,15 @@ import inputs.MouseInputs;
 import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
-
+import static utilz.Constants.Directions.*;
 public class GamePanel extends JPanel {
+
     private float xDelta = 300, yDelta = 100;
-    private float xDir = 1, yDir = 1;
     private int frames = 0;
     private long lastCheck =0;
     private Color color = new Color(0,0,0);
     private final Random random;
+    private int playerDir = -1;
 
 
 
@@ -27,13 +28,8 @@ public class GamePanel extends JPanel {
 
     }
 
+    public void setMoving(int direction){
 
-
-    public void changeXDelta(int val){
-        this.xDelta += val;
-    }
-    public void changeYDelta(int val){
-        this.yDelta += val;
     }
 
 
@@ -43,29 +39,14 @@ public class GamePanel extends JPanel {
         super.paintComponent(g);
         updateChar();
 
-
         g.setColor(color);
         g.fillRect((int) xDelta,(int) yDelta, 100, 175);
 
 
-        frames++;
-        if(System.currentTimeMillis() - lastCheck >= 1000){
-            lastCheck = System.currentTimeMillis();
-            System.out.println("FPS: " + frames);
-            frames=0;
-        }
     }
     public void updateChar(){
-        xDelta+= xDir;
-        if(xDelta > 1000|| xDelta < 0){
-            xDir*=-1;
-            color = getRanColor();
-        }
-        yDelta+= yDir;
-        if(yDelta > 1000 || yDelta < 0){
-            yDir *= -1;
-            color = getRanColor();
-        }
+
+
     }
 
     private Color getRanColor() {
@@ -76,4 +57,8 @@ public class GamePanel extends JPanel {
         return new Color(r,g,b);
     }
 
+    public void updateGame() {
+
+
+    }
 }
