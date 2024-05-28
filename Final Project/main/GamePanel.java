@@ -2,63 +2,51 @@ package main;
 
 import inputs.KeyBoardInputs;
 import inputs.MouseInputs;
-
+import java.awt.Dimension;
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Random;
 import static utilz.Constants.Directions.*;
 public class GamePanel extends JPanel {
-
-    private float xDelta = 300, yDelta = 100;
     private int frames = 0;
     private long lastCheck =0;
-    private Color color = new Color(0,0,0);
-    private final Random random;
-    private int playerDir = -1;
+    private Game game;
 
 
 
-
-    public GamePanel(){
-        random = new Random();
+    public GamePanel(Game game){
         MouseInputs mouseInputs = new MouseInputs();
+this.game = game;
+        setPanelSize();
         addKeyListener(new KeyBoardInputs(this));
         addMouseListener(mouseInputs);
         addMouseMotionListener(mouseInputs);
 
     }
 
-    public void setMoving(int direction){
+
+    private void setPanelSize() {
+        Dimension size = new Dimension(1100,1200);
+        setPreferredSize(size);
+
+
 
     }
-
-
-
 
     public void paintComponent(Graphics g){
         super.paintComponent(g);
-        updateChar();
-
-        g.setColor(color);
-        g.fillRect((int) xDelta,(int) yDelta, 100, 175);
-
-
-    }
-    public void updateChar(){
-
-
+        game.render(g);
     }
 
-    private Color getRanColor() {
-        int r = random.nextInt(255);
-        int g = random.nextInt(255);
-        int b = random.nextInt(255);
-
-        return new Color(r,g,b);
-    }
 
     public void updateGame() {
+    }
 
-
+    public Game getGame(){
+        return game;
     }
 }
