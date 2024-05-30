@@ -2,6 +2,8 @@ package entities;
 
 import inputs.KeyBoardInputs;
 import inputs.MouseInputs;
+import utilz.LoadSave;
+
 import java.awt.Dimension;
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -11,15 +13,22 @@ import java.io.IOException;
 import java.io.InputStream;
 import static utilz.Constants.Directions.*;
 public class Player extends Entity{
-    private BufferedImage img;
-    private int playerDir = -1;
+    private BufferedImage img = LoadSave.GetPlayerAboogRetep(LoadSave.PLAYER_ABMOOG_RETEP);
+    private boolean left,up,right,down;
     private boolean moving = false;
+    private float playerSpeed = 2.0F;
+
+    public boolean getMoving(){
+        return moving;
+    }
 
     public Player(float x, float y) {
         super(x, y);
     }
+
+
     private void importImg(){
-        inputStream is = getClass().getResourceAsStream("/images.jpeg");
+        InputStream is = getClass().getResourceAsStream("/images.jpeg");
 
         try {
             img = ImageIO.read(is);
@@ -36,34 +45,58 @@ public class Player extends Entity{
         g.drawImage(img,(int) x, (int) y,null);
 
     }
-    public void setDirection(int direction){
-        this.playerDir = direction;
-        moving = true;
 
-    }
-    public void setMoving(boolean moving){
-        this.moving = moving;
-    }
     public void updateChar(){
-        if(moving){
-            switch(playerDir){
-                case LEFT:
-                    x-=5;
-                    break;
-                case RIGHT:
-                    x+=5;
-                    break;
-                case UP:
-                    y-=5;
-                    break;
-                case DOWN:
-                    y+=5;
-                    break;
+        moving = false;
+        if(left && !right){
+            x-= playerSpeed;
+            moving = true;
+        }else if(right && !left){
+            x+= playerSpeed;
+            moving = true;
+        }
 
 
-            }
+        if(up && !down){
+            y-= playerSpeed;
+            moving = true;
+        }else if(down && !up){
+            y+= playerSpeed;
+            moving = true;
         }
 
     }
 
+
+    public boolean isLeft() {
+        return left;
+    }
+
+    public boolean isUp() {
+        return up;
+    }
+
+    public boolean isRight() {
+        return right;
+    }
+
+    public boolean isDown() {
+        return down;
+    }
+
+    public void setDown(boolean down) {
+        this.down = down;
+    }
+
+    public void setLeft(boolean left) {
+        this.left = left;
+    }
+
+    public void setUp(boolean up) {
+        this.up = up;
+    }
+
+    public void setRight(boolean right) {
+        this.right = right;
+    }
 }

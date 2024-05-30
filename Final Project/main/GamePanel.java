@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Random;
 import static utilz.Constants.Directions.*;
+import static main.Game.GAME_HEIGHT;
+import static main.Game.GAME_WIDTH;
 public class GamePanel extends JPanel {
     private int frames = 0;
     private long lastCheck =0;
@@ -30,7 +32,7 @@ this.game = game;
 
 
     private void setPanelSize() {
-        Dimension size = new Dimension(1100,1200);
+        Dimension size = new Dimension(GAME_WIDTH,GAME_HEIGHT);
         setPreferredSize(size);
 
 
