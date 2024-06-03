@@ -8,6 +8,7 @@ import java.nio.Buffer;
 
 public interface LoadSave {
     public static final String PLAYER_ABMOOG_RETEP = "images.jpeg";
+    public static final String LEVEL_ABMOOG_RETEP = "base.png";
 
     public static BufferedImage GetPlayerAboogRetep(String fileName){
         BufferedImage img = null;
